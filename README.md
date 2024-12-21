@@ -43,4 +43,5 @@ EcommerceApp/
 │   │   │   └── AndroidManifest.xml
 ├── build.gradle
 └── settings.gradle
+
 ```
