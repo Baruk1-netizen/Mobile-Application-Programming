@@ -1,4 +1,4 @@
-package com.example.shoplex;
+package com.example.mobile_application_programming;
 
 import org.junit.Test;
 

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.shoplex"
+    namespace = "com.example.mobile_application_programming"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.shoplex"
+        applicationId = "com.example.mobile_application_programming"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

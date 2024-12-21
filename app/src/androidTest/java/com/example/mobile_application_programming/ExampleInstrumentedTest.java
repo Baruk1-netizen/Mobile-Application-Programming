@@ -1,4 +1,4 @@
-package com.example.shoplex;
+package com.example.mobile_application_programming;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.shoplex", appContext.getPackageName());
+        assertEquals("com.example.mobile_application_programming", appContext.getPackageName());
     }
 }

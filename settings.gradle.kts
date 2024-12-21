@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Shoplex"
+rootProject.name = "Mobile-application-programming"
 include(":app")
  
