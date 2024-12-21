@@ -1,9 +1,18 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Shoplex" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme -->
+    <style name="Theme.EcommerceApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_coral</item>
+        <item name="colorPrimaryVariant">@color/deep_teal</item>
+        <item name="colorSecondary">@color/secondary_dark</item>
+        <item name="colorSecondaryVariant">@color/accent_mauve</item>
+        <item name="android:statusBarColor">@color/secondary_dark</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
-    <style name="Theme.Shoplex" parent="Base.Theme.Shoplex" />
+    <!-- Splash screen theme -->
+    <style name="Theme.EcommerceApp.Splash" parent="Theme.EcommerceApp">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

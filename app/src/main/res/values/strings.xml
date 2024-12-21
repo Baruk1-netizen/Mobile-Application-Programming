@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Shoplex</string>
+    <string name="app_name">ShopLex</string>
+    <string name="splash_description">Welcome to ShopLex</string>
 </resources>
