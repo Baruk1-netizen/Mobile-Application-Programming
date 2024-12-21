@@ -154,7 +154,7 @@ To ensure a consistent UI design, use the following color palette throughout the
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone Mobile-Application-Programming
    ```
 2. Open the project in Android Studio.  
 3. Sync Gradle files.  
