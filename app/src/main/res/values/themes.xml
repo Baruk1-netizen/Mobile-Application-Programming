@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.MobileApplicationProgramming" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Base application theme -->
+    <style name="Theme.MobileApplicationProgramming" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/primary_coral</item>
-        <item name="colorPrimaryDark">@color/secondary_dark</item>
-        <item name="colorAccent">@color/accent_mauve</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="colorPrimaryVariant">@color/primary_coral</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondary_dark</item>
+        <item name="colorSecondaryVariant">@color/deep_teal</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/primary_coral</item>
+        <!-- Navigation bar color -->
+        <item name="android:navigationBarColor">@color/primary_coral</item>
+    </style>
+
+    <!-- Splash Screen theme -->
+    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/primary_coral</item>
+        <item name="android:navigationBarColor">@color/primary_coral</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@color/primary_coral</item>
     </style>
 </resources>
