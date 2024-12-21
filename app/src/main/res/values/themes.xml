@@ -1,9 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Mobileapplicationprogramming" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MobileApplicationProgramming" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_coral</item>
+        <item name="colorPrimaryDark">@color/secondary_dark</item>
+        <item name="colorAccent">@color/accent_mauve</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
-
-    <style name="Theme.Mobileapplicationprogramming" parent="Base.Theme.Mobileapplicationprogramming" />
 </resources>
