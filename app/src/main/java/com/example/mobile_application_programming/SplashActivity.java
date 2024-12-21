@@ -1,36 +1,44 @@
 package com.example.mobile_application_programming;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.animation.AlphaAnimation;
-import android.widget.ImageView;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
-    private static final int SPLASH_DURATION = 3000; // Total duration
-    private static final int IMAGE_FADE_DURATION = 1000; // Image fade duration
-    private static final int IMAGE_FADE_START_DELAY = 500; // Delay before image starts fading in
+    private static final int SPLASH_DURATION = 5000;
+    private static final int ANIMATION_DURATION = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView splashLogo = findViewById(R.id.splash_logo);
-        
-        // Start with invisible image
-        splashLogo.setAlpha(0f);
+        View gradientBL = findViewById(R.id.gradient_bl);
+        View gradientTR = findViewById(R.id.gradient_tr);
+        View logo = findViewById(R.id.logo);
+        View shopIcon = findViewById(R.id.shop_icon);
 
-        // Create handler for delayed animation
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            // Animate the image
-            splashLogo.animate()
-                    .alpha(1f)
-                    .setDuration(IMAGE_FADE_DURATION)
-                    .start();
-        }, IMAGE_FADE_START_DELAY);
+        // Make everything immediately visible
+        gradientBL.setAlpha(0.6f);
+        gradientTR.setAlpha(0.6f);
+        logo.setAlpha(1f);
+        shopIcon.setAlpha(1f);
+
+        // Very subtle and quick scale animation
+        ObjectAnimator scaleLogoX = ObjectAnimator.ofFloat(logo, "scaleX", 0.98f, 1f);
+        ObjectAnimator scaleLogoY = ObjectAnimator.ofFloat(logo, "scaleY", 0.98f, 1f);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(scaleLogoX, scaleLogoY);
+        animatorSet.setDuration(ANIMATION_DURATION);
+        animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
+        animatorSet.start(); // Start immediately with no delay
 
         // Navigate to main activity
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
