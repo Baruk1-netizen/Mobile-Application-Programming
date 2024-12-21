@@ -81,11 +81,13 @@ To ensure a consistent UI design, use the following color palette throughout the
 ### Usage in `colors.xml`
 ```xml
 <resources>
-    <color name="primary_pink">#FF7F7F</color>
-    <color name="secondary_gray">#D4C5C5</color>
-    <color name="accent_mint">#8FD3D3</color>
-    <color name="deep_teal">#004D4D</color>
+    <color name="primary_coral">#FF6F6F</color>
+    <color name="secondary_dark">#142626</color>
+    <color name="accent_mauve">#D4B8B8</color>
+    <color name="cool_mint">#A6D3D3</color>
+    <color name="deep_teal">#004C4C</color>
 </resources>
+
 ```
 
 ---
