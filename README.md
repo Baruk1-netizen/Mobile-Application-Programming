@@ -106,6 +106,8 @@ To ensure a consistent UI design, use the following color palette throughout the
 | Cool Mint       | `#A6D3D3` | Soft Mint-Turquoise    |
 | Deep Teal       | `#004C4C` | Bold Teal              |
 
+![WhatsApp Image 2024-12-21 at 8 50 28 AM](https://github.com/user-attachments/assets/f51015a0-7353-49e0-81d8-05bfd4b4fcc1)
+
 
 ### Usage in `colors.xml`
 ```xml
