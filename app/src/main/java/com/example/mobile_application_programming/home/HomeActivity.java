@@ -11,10 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile_application_programming.R;
+import com.example.mobile_application_programming.navigation.TabNavigator;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+    private TabNavigator tabNavigator;
     private RecyclerView productsRecyclerView;
     private ProductAdapter productAdapter;
     private EditText searchBar;
@@ -29,24 +33,31 @@ public class HomeActivity extends AppCompatActivity {
         productsRecyclerView = findViewById(R.id.productsRecyclerView);
         searchBar = findViewById(R.id.searchBar);
 
-        // Setup RecyclerView
+        // Initialize and set up BottomNavigationView with TabNavigator
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        tabNavigator = new TabNavigator(this, bottomNavigationView);
+        tabNavigator.setSelectedItem(R.id.navigation_home);
+
+        // Set up RecyclerView for products
         productsRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         productList = new ArrayList<>();
         productAdapter = new ProductAdapter(productList, this::onAddToCart);
         productsRecyclerView.setAdapter(productAdapter);
 
-        // Load products first
+        // Load initial list of products
         loadProducts();
 
-        // Setup search functionality after products are loaded
+        // Set up search functionality
         setupSearch();
     }
 
+    /**
+     * Loads a list of products into the RecyclerView.
+     */
     private void loadProducts() {
-        // Clear existing products
         productList.clear();
         
-        // Add all products
+        // Add sample products
         productList.add(new Product(1, "Smart Watch Pro", "199.99", 4.5f, R.drawable.watch));
         productList.add(new Product(2, "Classic T-Shirt", "29.99", 4.0f, R.drawable.tshirt));
         productList.add(new Product(3, "Running Shoes", "89.99", 4.8f, R.drawable.shoes));
@@ -60,10 +71,13 @@ public class HomeActivity extends AppCompatActivity {
         productList.add(new Product(11, "Phone Case", "24.99", 4.0f, R.drawable.phonecase));
         productList.add(new Product(12, "Wireless Mouse", "34.99", 4.3f, R.drawable.mouse));
 
-        // Update adapter with new products and show all
+        // Update adapter
         productAdapter.updateProducts(productList);
     }
 
+    /**
+     * Sets up a search bar to filter the products in the RecyclerView.
+     */
     private void setupSearch() {
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,6 +93,10 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Handles adding a product to the cart.
+     * @param product The product to be added.
+     */
     private void onAddToCart(Product product) {
         Toast.makeText(this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
     }
