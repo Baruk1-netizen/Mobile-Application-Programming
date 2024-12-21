@@ -13,7 +13,7 @@ EcommerceApp/
 ├── app/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── java/com/ecommerceapp/
+│   │   │   ├── java/com/example/mobile_application_programming/
 │   │   │   │   ├── auth/                  # Baruk's work on Auth screens
 │   │   │   │   │   ├── LoginActivity.java
 │   │   │   │   │   ├── RegisterActivity.java
@@ -54,6 +54,7 @@ EcommerceApp/
 │   │   │   └── AndroidManifest.xml
 ├── build.gradle
 └── settings.gradle
+
 
 ```
 
