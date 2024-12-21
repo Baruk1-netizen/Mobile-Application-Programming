@@ -1,4 +1,3 @@
-
 package com.example.mobile_application_programming.home;
 
 import android.view.LayoutInflater;
@@ -27,7 +26,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public ProductAdapter(List<Product> products, OnProductClickListener listener) {
         this.products = products;
-        this.filteredProducts = new ArrayList<>(products);
+        this.filteredProducts = new ArrayList<>(products); // Initialize with all products
         this.listener = listener;
     }
 
@@ -53,8 +52,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void filter(String query) {
         filteredProducts.clear();
         if (query.isEmpty()) {
+            // When search is empty, show all products
             filteredProducts.addAll(products);
         } else {
+            // Only filter when there's a search query
             String lowerCaseQuery = query.toLowerCase();
             for (Product product : products) {
                 if (product.getName().toLowerCase().contains(lowerCaseQuery)) {
@@ -62,6 +63,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 }
             }
         }
+        notifyDataSetChanged();
+    }
+
+    // Important: Update the data properly when products change
+    public void updateProducts(List<Product> newProducts) {
+        this.products = newProducts;
+        this.filteredProducts = new ArrayList<>(newProducts); // Show all products
         notifyDataSetChanged();
     }
 

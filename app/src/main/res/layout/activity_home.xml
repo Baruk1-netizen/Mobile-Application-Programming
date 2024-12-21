@@ -3,35 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cool_mint">
+    android:background="@color/primary_coral">
 
-    <!-- Search Bar at the top -->
+    <!-- Search Bar Container -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/searchBarCard"
+        android:id="@+id/searchBarContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="12dp"
         app:cardElevation="4dp">
 
-        <EditText
-            android:id="@+id/searchBar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/white"
-            android:drawableStart="@android:drawable/ic_menu_search"
-            android:drawablePadding="8dp"
-            android:hint="Search products..."
-            android:padding="8dp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                android:tint="@color/secondary_dark"
+                android:layout_marginStart="8dp"/>
+
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:hint="Search products..."
+                android:textColorHint="@color/white"
+                android:textColor="@color/cool_mint"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- RecyclerView for products grid -->
+    <!-- RecyclerView for products -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchBarCard"
+        android:layout_below="@id/searchBarContainer"
         android:padding="8dp"
-        android:clipToPadding="false" />
-
+        android:clipToPadding="false"/>
 </RelativeLayout>
