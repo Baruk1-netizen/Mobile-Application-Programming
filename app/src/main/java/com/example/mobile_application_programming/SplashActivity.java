@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobile_application_programming.home.HomeActivity;
+
 public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_DURATION = 5000;
     private static final int ANIMATION_DURATION = 100;
@@ -24,13 +26,11 @@ public class SplashActivity extends AppCompatActivity {
         View logo = findViewById(R.id.logo);
         View shopIcon = findViewById(R.id.shop_icon);
 
-        // Make everything immediately visible
         gradientBL.setAlpha(0.6f);
         gradientTR.setAlpha(0.6f);
         logo.setAlpha(1f);
         shopIcon.setAlpha(1f);
 
-        // Very subtle and quick scale animation
         ObjectAnimator scaleLogoX = ObjectAnimator.ofFloat(logo, "scaleX", 0.98f, 1f);
         ObjectAnimator scaleLogoY = ObjectAnimator.ofFloat(logo, "scaleY", 0.98f, 1f);
 
@@ -38,11 +38,11 @@ public class SplashActivity extends AppCompatActivity {
         animatorSet.playTogether(scaleLogoX, scaleLogoY);
         animatorSet.setDuration(ANIMATION_DURATION);
         animatorSet.setInterpolator(new AccelerateDecelerateInterpolator());
-        animatorSet.start(); // Start immediately with no delay
+        animatorSet.start();
 
-        // Navigate to main activity
+        // Navigate to HomeActivity instead of MainActivity
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
