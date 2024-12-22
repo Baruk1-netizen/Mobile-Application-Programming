@@ -11,18 +11,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile_application_programming.R;
-import com.example.mobile_application_programming.navigation.TabNavigator;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.mobile_application_programming.navigation.BottomNavigationBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
-    private TabNavigator tabNavigator;
+public class HomeActivity extends AppCompatActivity implements BottomNavigationBar.NavigationListener {
     private RecyclerView productsRecyclerView;
     private ProductAdapter productAdapter;
     private EditText searchBar;
     private List<Product> productList;
+    private BottomNavigationBar navigationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +31,10 @@ public class HomeActivity extends AppCompatActivity {
         // Initialize views
         productsRecyclerView = findViewById(R.id.productsRecyclerView);
         searchBar = findViewById(R.id.searchBar);
+        navigationBar = findViewById(R.id.bottomNavigation);
 
-        // Initialize and set up BottomNavigationView with TabNavigator
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        tabNavigator = new TabNavigator(this, bottomNavigationView);
-        tabNavigator.setSelectedItem(R.id.navigation_home);
+        // Set up navigation
+        navigationBar.setNavigationListener(this);
 
         // Set up RecyclerView for products
         productsRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -99,5 +97,21 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void onAddToCart(Product product) {
         Toast.makeText(this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTabSelected(int position) {
+        // For now, only handle home tab (position 0) since other screens aren't ready
+        switch (position) {
+            case 0:
+                // Already on home screen
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

@@ -54,11 +54,10 @@
         android:padding="8dp"
         android:clipToPadding="false"/>
 
-    <include
-        android:id="@+id/bottom_navigation"
-        layout="@layout/layout_bottom_nav"
+    <com.example.mobile_application_programming.navigation.BottomNavigationBar
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"/>
         
 </RelativeLayout>
