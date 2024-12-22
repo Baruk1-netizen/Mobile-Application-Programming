@@ -12,9 +12,9 @@
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="90dp"
         app:cardCornerRadius="35dp"
-        app:cardElevation="12dp">
+        app:cardElevation="18dp">
 
         <FrameLayout
             android:id="@+id/cartTab"
@@ -25,6 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#FF6F6F"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -146,7 +147,7 @@
                     android:id="@+id/messagesIcon"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_profile" />
+                    android:src="@drawable/ic_contact" />
 
                 <TextView
                     android:id="@+id/messagesText"

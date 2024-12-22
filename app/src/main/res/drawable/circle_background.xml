@@ -4,5 +4,7 @@
     <solid android:color="@color/primary_coral" />
     <size
         android:width="60dp"
+        android:layout_marginBottom="90dp"
         android:height="60dp" />
+
 </shape>
