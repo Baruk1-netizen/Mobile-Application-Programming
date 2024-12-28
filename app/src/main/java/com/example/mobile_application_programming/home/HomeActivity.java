@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile_application_programming.R;
 import com.example.mobile_application_programming.navigation.BottomNavigationBar;
+import android.content.Intent;
+import com.example.mobile_application_programming.categories.CategoryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
         productList.add(new Product(10, "Laptop Sleeve", "39.99", 4.2f, R.drawable.sleeve));
         productList.add(new Product(11, "Phone Case", "24.99", 4.0f, R.drawable.phonecase));
         productList.add(new Product(12, "Wireless Mouse", "34.99", 4.3f, R.drawable.mouse));
+        productList.add(new Product (13, "Gaming Laptop" , "999.99", 4.9f, R.drawable.laptop));
+        productList.add(new Product (14, "Winter Jacket" , "149.99", 4.5f, R.drawable.jacket));
+        
 
         // Update adapter
         productAdapter.updateProducts(productList);
@@ -98,20 +103,22 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
     private void onAddToCart(Product product) {
         Toast.makeText(this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
     }
-
     @Override
-    public void onTabSelected(int position) {
-        // For now, only handle home tab (position 0) since other screens aren't ready
-        switch (position) {
-            case 0:
-                // Already on home screen
-                break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
-                break;
-        }
+public void onTabSelected(int position) {
+    switch (position) {
+        case 0:
+            // Already on home screen
+            break;
+        case 1:
+            // Navigate to categories
+            Intent categoriesIntent = new Intent(this, CategoryActivity.class);
+            startActivity(categoriesIntent);
+            break;
+        case 2:
+        case 3:
+        case 4:
+            Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
+            break;
     }
+}
 }

@@ -86,7 +86,7 @@ public class BottomNavigationBar extends RelativeLayout {
         this.listener = listener;
     }
 
-    private void setSelectedTab(int position) {
+    public void setSelectedTab(int position) {
         // Reset all tabs
         resetAllTabs();
 

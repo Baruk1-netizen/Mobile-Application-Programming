@@ -21,4 +21,8 @@ public class Product {
     public String getPrice() { return price; }
     public float getRating() { return rating; }
     public int getImageResource() { return imageResource; }
+
+    public int getImageResourceId() {
+        return imageResource;
+    }
 }
