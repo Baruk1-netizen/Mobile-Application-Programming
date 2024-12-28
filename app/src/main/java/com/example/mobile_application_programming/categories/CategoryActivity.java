@@ -17,6 +17,8 @@ import com.example.mobile_application_programming.navigation.BottomNavigationBar
 import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
+import com.example.mobile_application_programming.utils.GridSpacingItemDecoration;
+
 
 public class CategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationBar.NavigationListener {
     private DrawerLayout drawerLayout;
@@ -98,8 +100,18 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     private void setupRecyclerView() {
         allProducts = new ArrayList<>();
         categoryAdapter = new CategoryAdapter(this, allProducts, this::onAddToCart);
-        productsRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return 1;
+            }
+        });
+        productsRecyclerView.setLayoutManager(layoutManager);
         productsRecyclerView.setAdapter(categoryAdapter);
+        
+        int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.grid_spacing);
+        productsRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, spacingInPixels, true));
     }
 
     private void loadAllProducts() {
