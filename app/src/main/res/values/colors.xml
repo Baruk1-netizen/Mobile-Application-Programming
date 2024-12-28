@@ -7,4 +7,6 @@
     <color name="deep_teal">#004C4C</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="search_bar_background">#F0F4F4</color>
+    <color name="text_color">#142626</color>
 </resources>

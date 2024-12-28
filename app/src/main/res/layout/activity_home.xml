@@ -11,19 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@color/white"
         app:cardCornerRadius="12dp"
-        app:cardElevation="4dp">
-
+        app:cardElevation="4dp"
+        android:backgroundTint="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F0F4F4"
-            android:backgroundTint="#EDEAF1"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:background="@color/search_bar_background">
 
             <ImageView
                 android:layout_width="24dp"
@@ -40,24 +38,36 @@
                 android:layout_marginEnd="8dp"
                 android:background="@null"
                 android:hint="Search products here..."
-                android:textColor="#142626"
+                android:textColor="@color/text_color"
                 android:textColorHint="@color/deep_teal" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- RecyclerView for products -->
+    <!-- RecyclerView for Products -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/searchBarContainer"
         android:padding="8dp"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false" />
 
-    <com.example.mobile_application_programming.navigation.BottomNavigationBar
-        android:id="@+id/bottomNavigation"
+    <!-- Rounded Bottom Navigation Bar -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottomNavigationContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
-        
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        android:layout_margin="8dp">
+
+        <com.example.mobile_application_programming.navigation.BottomNavigationBar
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:background="@color/white" />
+
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
