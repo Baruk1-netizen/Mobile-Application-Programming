@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobile_application_programming">
-    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -13,30 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileApplicationProgramming">
 
-        <!-- Splash Screen - Only this should have LAUNCHER intent -->
         <activity
-            android:name=".home.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.SplashScreen"
-            android:noHistory="true">
+            android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Authentication Activities -->
-        <activity
-            android:name=".auth.LoginActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name=".auth.RegisterActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- Main App Activities -->
         <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
@@ -46,8 +31,22 @@
             android:exported="false" />
 
         <activity
-            android:name=".categories.CategoryActivity"
-            android:exported="false" />
+        android:name=".categories.CategoryActivity"
+        android:exported="false" />
+
+        <activity
+    android:name=".auth.LoginActivity"
+    android:exported="true"
+    android:windowSoftInputMode="adjustResize">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+<activity
+    android:name=".auth.RegisterActivity"
+    android:exported="false"
+    android:windowSoftInputMode="adjustResize" />
 
     </application>
 </manifest>

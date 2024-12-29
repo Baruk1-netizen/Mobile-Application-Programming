@@ -2,41 +2,43 @@ package com.example.mobile_application_programming.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mobile_application_programming.R;
 import com.example.mobile_application_programming.home.HomeActivity;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText nameField, emailField, passwordField, confirmPasswordField;
-    private MaterialButton registerButton;
+    private EditText emailField, passwordField, confirmPasswordField;
+    private MaterialButton registerButton, googleSignInButton;
     private TextView loginText;
     private ImageView topPulse, bottomPulse;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
 
         // Initialize views
-        nameField = findViewById(R.id.nameField);
         emailField = findViewById(R.id.emailField);
         passwordField = findViewById(R.id.passwordField);
         confirmPasswordField = findViewById(R.id.confirmPasswordField);
         registerButton = findViewById(R.id.registerButton);
+        googleSignInButton = findViewById(R.id.googleSignInButton);
         loginText = findViewById(R.id.loginText);
         topPulse = findViewById(R.id.topPulse);
         bottomPulse = findViewById(R.id.bottomPulse);
 
         registerButton.setOnClickListener(v -> attemptRegister());
+        googleSignInButton.setOnClickListener(v -> signInWithGoogle());
         loginText.setOnClickListener(v -> {
             finish();
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -44,30 +46,41 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void attemptRegister() {
-        String name = nameField.getText().toString();
-        String email = emailField.getText().toString();
-        String password = passwordField.getText().toString();
-        String confirmPassword = confirmPasswordField.getText().toString();
+        String email = emailField.getText().toString().trim();
+        String password = passwordField.getText().toString().trim();
+        String confirmPassword = confirmPasswordField.getText().toString().trim();
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+        if (!isValidEmail(email)) {
+            emailField.setError("Invalid Email");
+            emailField.requestFocus();
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                        finish();
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "Registration failed",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+        if (password.length() < 6) {
+            passwordField.setError("Password must be at least 6 characters");
+            passwordField.requestFocus();
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            confirmPasswordField.setError("Passwords do not match");
+            confirmPasswordField.requestFocus();
+            return;
+        }
+
+
+    }
+
+    private void signInWithGoogle() {
+        // Implement Google Sign-In logic
+    }
+
+    private boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }
