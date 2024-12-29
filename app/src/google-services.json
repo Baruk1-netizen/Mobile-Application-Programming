@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "199506540379",
+    "project_id": "authshoplex",
+    "storage_bucket": "authshoplex.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:199506540379:android:7fd3de1dfd19d6a9e58c7e",
+        "android_client_info": {
+          "package_name": "com.example.authshoplex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "199506540379-k59f9kvpsclst26lco8iknf2nnuvdbk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQdVVu7CX9T_jzGGHjctRPQ8ds2ZRnxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "199506540379-k59f9kvpsclst26lco8iknf2nnuvdbk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
