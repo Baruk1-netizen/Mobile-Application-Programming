@@ -98,6 +98,9 @@ public class BottomNavigationBar extends RelativeLayout {
             case 1:
                 setTabActive(categoriesDot, categoriesIcon, categoriesText);
                 break;
+            case 2: 
+                //cart is central so no active state
+                break;
             case 3:
                 setTabActive(messagesDot, messagesIcon, messagesText);
                 break;

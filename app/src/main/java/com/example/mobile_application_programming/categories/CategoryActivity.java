@@ -1,5 +1,6 @@
 package com.example.mobile_application_programming.categories;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,9 +16,12 @@ import com.example.mobile_application_programming.R;
 import com.example.mobile_application_programming.home.Product;
 import com.example.mobile_application_programming.navigation.BottomNavigationBar;
 import com.google.android.material.navigation.NavigationView;
+import com.example.mobile_application_programming.cart.CartManager;
+import com.example.mobile_application_programming.cart.CartActivity;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.mobile_application_programming.utils.GridSpacingItemDecoration;
+
 
 
 public class CategoryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationBar.NavigationListener {
@@ -201,6 +205,7 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
     }
 
     private void onAddToCart(Product product) {
+        CartManager.getInstance(this).addToCart(product);
         Toast.makeText(this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
     }
 
@@ -221,6 +226,10 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
                 // Already on categories
                 break;
             case 2:
+                 // Navigate to cart
+            Intent cartIntent = new Intent(this, CartActivity.class);
+            startActivity(cartIntent);
+            break;
             case 3:
             case 4:
                 Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();

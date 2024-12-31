@@ -35,6 +35,10 @@
         android:exported="false" />
 
         <activity
+    android:name=".cart.CartActivity"
+    android:exported="false" />
+
+        <activity
     android:name=".auth.LoginActivity"
     android:exported="true"
     android:windowSoftInputMode="adjustResize">
@@ -43,10 +47,11 @@
         <category android:name="android.intent.category.LAUNCHER" />
     </intent-filter>
 </activity>
-<activity
-    android:name=".auth.RegisterActivity"
-    android:exported="false"
-    android:windowSoftInputMode="adjustResize" />
+    <activity
+        android:name=".auth.RegisterActivity"
+        android:exported="false"
+        android:windowSoftInputMode="adjustResize" />
+
 
     </application>
 </manifest>

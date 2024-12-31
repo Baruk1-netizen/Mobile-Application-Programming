@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobile_application_programming.R;
 import com.example.mobile_application_programming.home.Product;
+import com.example.mobile_application_programming.home.ProductDetailsDialog;
+
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ProductViewHolder> {
@@ -49,6 +51,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Produc
         holder.productPrice.setText("$" + product.getPrice());
         holder.productRating.setRating(product.getRating());
         holder.productImage.setImageResource(product.getImageResourceId());
+
+         // Add click listener for the entire item
+        holder.itemView.setOnClickListener(v -> {
+            ProductDetailsDialog dialog = new ProductDetailsDialog(context, product);
+            dialog.show();
+        });
         
         holder.addToCartButton.setOnClickListener(v -> {
             if (listener != null) {

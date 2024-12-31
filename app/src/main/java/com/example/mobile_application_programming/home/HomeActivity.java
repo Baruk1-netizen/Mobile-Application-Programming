@@ -14,6 +14,8 @@ import com.example.mobile_application_programming.R;
 import com.example.mobile_application_programming.navigation.BottomNavigationBar;
 import android.content.Intent;
 import com.example.mobile_application_programming.categories.CategoryActivity;
+import com.example.mobile_application_programming.cart.CartActivity;
+import com.example.mobile_application_programming.cart.CartManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +103,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationB
      * @param product The product to be added.
      */
     private void onAddToCart(Product product) {
+        CartManager.getInstance(this).addToCart(product);
         Toast.makeText(this, product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
     }
     @Override
@@ -115,6 +118,11 @@ public void onTabSelected(int position) {
             startActivity(categoriesIntent);
             break;
         case 2:
+            //navigate to cart activity
+            Intent cartIntent = new Intent(this, CartActivity.class);
+            startActivity(cartIntent);
+            break;
+        default:
         case 3:
         case 4:
             Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
