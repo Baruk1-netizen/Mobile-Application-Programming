@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:elevation="0dp">
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,10 +21,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Shopping Cart"
+                android:text="My Cart"
                 android:textColor="@color/secondary_dark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_gravity="center" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -33,30 +34,55 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingBottom="100dp" />
+                android:paddingBottom="120dp" />
 
-            <TextView
-                android:id="@+id/emptyCartMessage"
+            <LinearLayout
+                android:id="@+id/emptyStateContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:gravity="center"
-                android:padding="32dp"
-                android:text="Your cart is empty"
-                android:textColor="@color/gray"
-                android:textSize="16sp"
-                android:visibility="gone" />
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_empty_cart"
+                    android:alpha="0.6"/>
+
+                <TextView
+                    android:id="@+id/emptyCartMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your cart is empty"
+                    android:textColor="@color/secondary_dark"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add items to start shopping"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -66,48 +92,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:cardElevation="8dp">
+        app:cardElevation="12dp"
+        app:cardCornerRadius="24dp"
+        android:layout_margin="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="8dp">
+                android:paddingBottom="16dp">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Total"
-                    android:textColor="@color/secondary_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:text="Total Amount"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/totalPrice"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primary_coral"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:textColor="@color/secondary_dark"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="end"/>
 
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/checkoutButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/primary_coral"
-                android:paddingVertical="12dp"
+                android:layout_height="56dp"
                 android:text="Proceed to Checkout"
-                android:textColor="@color/white"
-                app:cornerRadius="8dp" />
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                app:cornerRadius="16dp"
+                android:backgroundTint="@color/primary_coral"/>
 
         </LinearLayout>
 

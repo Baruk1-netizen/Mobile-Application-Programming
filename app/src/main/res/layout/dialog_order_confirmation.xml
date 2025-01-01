@@ -5,6 +5,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <com.google.android.material.button.MaterialButton
+    android:id="@+id/continueShoppingButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Continue Shopping"
+    android:layout_gravity="center" />
+
+
     <TextView
         android:id="@+id/confirmationMessage"
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.mobile_application_programming.home;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,70 +8,113 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile_application_programming.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
-    private List<Product> products;
-    private List<Product> filteredProducts;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> implements Filterable {
+    private List<Product> productList;
+    private List<Product> productListFull;
     private final OnProductClickListener listener;
+    private final Context context;
 
     public interface OnProductClickListener {
         void onAddToCart(Product product);
     }
 
-    public ProductAdapter(List<Product> products, OnProductClickListener listener) {
-        this.products = products;
-        this.filteredProducts = new ArrayList<>(products); // Initialize with all products
+    public ProductAdapter(List<Product> productList, OnProductClickListener listener) {
+        this.productList = productList;
+        this.productListFull = new ArrayList<>(productList);
         this.listener = listener;
+        this.context = null; // Will be set in onCreateViewHolder
     }
 
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
         return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-        Product product = filteredProducts.get(position);
-        holder.bind(product, listener);
+        Product product = productList.get(position);
+
+        holder.productImage.setImageResource(product.getImageResourceId());
+        holder.productName.setText(product.getName());
+        holder.productPrice.setText("$" + product.getPrice());
+        holder.productRating.setRating(product.getRating());
+
+        // Click listener for the entire item to show details dialog
+        holder.itemView.setOnClickListener(v -> {
+            ProductDetailsDialog dialog = new ProductDetailsDialog(holder.itemView.getContext(), product);
+            dialog.show();
+        });
+
+        // Click listener for add to cart button
+        holder.addToCartButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onAddToCart(product);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return filteredProducts.size();
+        return productList.size();
     }
 
-    public void filter(String query) {
-        filteredProducts.clear();
-        if (query.isEmpty()) {
-            // When search is empty, show all products
-            filteredProducts.addAll(products);
-        } else {
-            // Only filter when there's a search query
-            String lowerCaseQuery = query.toLowerCase();
-            for (Product product : products) {
-                if (product.getName().toLowerCase().contains(lowerCaseQuery)) {
-                    filteredProducts.add(product);
+    public void updateProducts(List<Product> newProducts) {
+        this.productList = new ArrayList<>(newProducts);
+        this.productListFull = new ArrayList<>(newProducts);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return productFilter;
+    }
+
+    private final Filter productFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Product> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(productListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Product product : productListFull) {
+                    if (product.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(product);
+                    }
                 }
             }
-        }
-        notifyDataSetChanged();
-    }
 
-    // Important: Update the data properly when products change
-    public void updateProducts(List<Product> newProducts) {
-        this.products = newProducts;
-        this.filteredProducts = new ArrayList<>(newProducts); // Show all products
-        notifyDataSetChanged();
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            productList.clear();
+            productList.addAll((List<Product>) results.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    public void filter(String text) {
+        getFilter().filter(text);
     }
 
     static class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -87,15 +131,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productPrice = itemView.findViewById(R.id.productPrice);
             productRating = itemView.findViewById(R.id.productRating);
             addToCartButton = itemView.findViewById(R.id.addToCartButton);
-        }
-
-        void bind(Product product, OnProductClickListener listener) {
-            productImage.setImageResource(product.getImageResource());
-            productName.setText(product.getName());
-            productPrice.setText("$" + product.getPrice());
-            productRating.setRating(product.getRating());
-            
-            addToCartButton.setOnClickListener(v -> listener.onAddToCart(product));
         }
     }
 }

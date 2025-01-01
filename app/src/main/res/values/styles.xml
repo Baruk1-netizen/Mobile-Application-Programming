@@ -3,11 +3,17 @@
 
     <!-- Base application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here -->
         <item name="colorPrimary">@color/primary_coral</item>
-        <item name="colorPrimaryDark">@color/primary_coral</item> <!-- Status bar color -->
+        <item name="colorPrimaryDark">@color/primary_coral</item>
         <item name="colorAccent">@color/primary_coral</item>
-        <item name="android:windowLightStatusBar">true</item> <!-- Optional: if you want light icons on the status bar -->
+        <item name="android:windowLightStatusBar">true</item> 
+        <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">16dp</item>
+    </style>
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
 </resources>
