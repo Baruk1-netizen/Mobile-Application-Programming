@@ -112,18 +112,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total Amount"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp"/>
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/totalPrice"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/secondary_dark"
+                    android:gravity="end"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:gravity="end"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -131,11 +131,11 @@
                 android:id="@+id/checkoutButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
+                android:backgroundTint="@color/primary_coral"
                 android:text="Proceed to Checkout"
-                android:textSize="16sp"
                 android:textAllCaps="false"
-                app:cornerRadius="16dp"
-                android:backgroundTint="@color/primary_coral"/>
+                android:textSize="16sp"
+                app:cornerRadius="16dp" />
 
         </LinearLayout>
 
