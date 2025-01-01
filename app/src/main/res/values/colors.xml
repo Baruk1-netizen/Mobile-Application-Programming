@@ -9,4 +9,11 @@
     <color name="black">#000000</color>
     <color name="search_bar_background">#F0F4F4</color>
     <color name="text_color">#142626</color>
+    <color name="gray">#333333</color>
+     <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="accent">#FF4081</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="background">#FFFFFF</color>
 </resources>

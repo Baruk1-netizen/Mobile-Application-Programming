@@ -2,21 +2,27 @@ package com.example.mobile_application_programming.home;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
 import com.example.mobile_application_programming.R;
 import com.example.mobile_application_programming.cart.CartManager;
+import com.google.android.material.button.MaterialButton;
 
 public class ProductDetailsDialog extends Dialog {
     private final Product product;
     private final Context context;
 
-    public ProductDetailsDialog(Context context, Product product) {
+    public ProductDetailsDialog(@NonNull Context context, Product product) {
         super(context);
         this.context = context;
         this.product = product;
@@ -28,25 +34,43 @@ public class ProductDetailsDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_product_details);
 
-        ImageView productImage = findViewById(R.id.productDetailImage);
-        TextView productName = findViewById(R.id.productDetailName);
-        TextView productPrice = findViewById(R.id.productDetailPrice);
-        TextView productDescription = findViewById(R.id.productDetailDescription);
-        RatingBar productRating = findViewById(R.id.productDetailRating);
-        Button addToCartButton = findViewById(R.id.productDetailAddToCart);
-        Button closeButton = findViewById(R.id.productDetailClose);
+        // Set dialog width to match parent with margins
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, 
+                             ViewGroup.LayoutParams.WRAP_CONTENT);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        productImage.setImageResource(product.getImageResource());
+        // Initialize views
+        ImageView productImage = findViewById(R.id.productImage);
+        TextView productName = findViewById(R.id.productName);
+        TextView productPrice = findViewById(R.id.productPrice);
+        TextView productDescription = findViewById(R.id.productDescription);
+        RatingBar productRating = findViewById(R.id.productRating);
+        MaterialButton addToCartButton = findViewById(R.id.addToCartButton);
+        MaterialButton buyNowButton = findViewById(R.id.buyNowButton);
+
+        // Set product details
+        productImage.setImageResource(product.getImageResourceId());
         productName.setText(product.getName());
         productPrice.setText("$" + product.getPrice());
-        productDescription.setText(product.getDescription());
         productRating.setRating(product.getRating());
+        
+        // Set sample description (you should add this to your Product class)
+        String description = "Experience premium quality with the " + product.getName() + 
+                           ". This product offers excellent value for money with its " +
+                           "superior features and elegant design.";
+        productDescription.setText(description);
 
+        // Button click listeners
         addToCartButton.setOnClickListener(v -> {
             CartManager.getInstance(context).addToCart(product);
+            Toast.makeText(context, product.getName() + " added to cart", 
+                         Toast.LENGTH_SHORT).show();
             dismiss();
         });
 
-        closeButton.setOnClickListener(v -> dismiss());
+        buyNowButton.setOnClickListener(v -> {
+            Toast.makeText(context, "Buy Now feature coming soon!", 
+                         Toast.LENGTH_SHORT).show();
+        });
     }
 }

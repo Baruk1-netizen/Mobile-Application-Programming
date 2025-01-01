@@ -2,25 +2,31 @@ package com.example.mobile_application_programming.cart;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.example.mobile_application_programming.home.Product;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.example.mobile_application_programming.home.Product;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartManager {
-    private static final String PREF_NAME = "CartPreferences";
+    private static final String PREF_NAME = "CartPrefs";
     private static final String CART_ITEMS = "cart_items";
     private static CartManager instance;
-    private final SharedPreferences preferences;
+    private final SharedPreferences prefs;
     private final Gson gson;
-    private List<Product> cartItems;
+    private List<CartItem> cartItems;
+    private List<CartUpdateListener> listeners;
+
+    public interface CartUpdateListener {
+        void onCartUpdated();
+    }
 
     private CartManager(Context context) {
-        preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         gson = new Gson();
-        loadCartItems();
+        listeners = new ArrayList<>();
+        loadCart();
     }
 
     public static synchronized CartManager getInstance(Context context) {
@@ -30,69 +36,90 @@ public class CartManager {
         return instance;
     }
 
-    private void loadCartItems() {
-        String json = preferences.getString(CART_ITEMS, null);
-        Type type = new TypeToken<ArrayList<Product>>() {}.getType();
-        cartItems = gson.fromJson(json, type);
-        if (cartItems == null) {
-            cartItems = new ArrayList<>();
-        }
+    private void loadCart() {
+        String json = prefs.getString(CART_ITEMS, null);
+        Type type = new TypeToken<ArrayList<CartItem>>(){}.getType();
+        cartItems = json == null ? new ArrayList<>() : gson.fromJson(json, type);
     }
 
-    private void saveCartItems() {
+    private void saveCart() {
         String json = gson.toJson(cartItems);
-        preferences.edit().putString(CART_ITEMS, json).apply();
+        prefs.edit().putString(CART_ITEMS, json).apply();
+        notifyListeners();
     }
 
+    public void addListener(CartUpdateListener listener) {
+        if (!listeners.contains(listener)) {
+            listeners.add(listener);
+        }
+    }
+
+    public void removeListener(CartUpdateListener listener) {
+        listeners.remove(listener);
+    }
+
+    private void notifyListeners() {
+        for (CartUpdateListener listener : listeners) {
+            listener.onCartUpdated();
+        }
+    }
+
+    // Method to add a Product to cart
     public void addToCart(Product product) {
-        boolean found = false;
-        for (Product item : cartItems) {
+        // Check if product already exists in cart
+        for (CartItem item : cartItems) {
             if (item.getId() == product.getId()) {
-                item.setQuantity(item.getQuantity() + 1);
-                found = true;
-                break;
+                item.incrementQuantity();
+                saveCart();
+                return;
             }
         }
-        if (!found) {
-            product.setQuantity(1);
-            cartItems.add(product);
-        }
-        saveCartItems();
+        
+        // If product doesn't exist, create new cart item
+        CartItem newItem = new CartItem(
+            product.getId(),
+            product.getName(),
+            product.getPrice(),
+            product.getRating(),
+            product.getImageResource()
+        );
+        cartItems.add(newItem);
+        saveCart();
     }
 
-    public void removeFromCart(Product product) {
-        cartItems.removeIf(item -> item.getId() == product.getId());
-        saveCartItems();
+    public void removeItem(int productId) {
+        cartItems.removeIf(item -> item.getId() == productId);
+        saveCart();
     }
 
-    public void updateQuantity(Product product, int quantity) {
-        for (Product item : cartItems) {
-            if (item.getId() == product.getId()) {
+    public void updateItemQuantity(int productId, int quantity) {
+        for (CartItem item : cartItems) {
+            if (item.getId() == productId) {
                 item.setQuantity(quantity);
-                break;
+                saveCart();
+                return;
             }
         }
-        saveCartItems();
     }
 
-    public List<Product> getCartItems() {
+    public List<CartItem> getCartItems() {
         return new ArrayList<>(cartItems);
     }
 
-    public void clearCart() {
-        cartItems.clear();
-        saveCartItems();
-    }
-
-    public double getCartTotal() {
+    public double getTotal() {
         double total = 0;
-        for (Product item : cartItems) {
-            total += item.getPriceAsDouble() * item.getQuantity();
+        for (CartItem item : cartItems) {
+            total += item.getTotalPrice();
         }
         return total;
     }
 
-    public int getCartSize() {
+    public void clearCart() {
+        cartItems.clear();
+        saveCart();
+    }
+
+    public int getItemCount() {
         return cartItems.size();
     }
 }

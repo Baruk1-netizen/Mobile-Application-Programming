@@ -35,7 +35,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         // Display total amount
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
-        totalAmountText.setText("Total Amount: " + currencyFormat.format(cartManager.getCartTotal()));
+        totalAmountText.setText("Total Amount: " + currencyFormat.format(cartManager.getTotal()));
 
         // Set up place order button
         placeOrderButton.setOnClickListener(v -> {
