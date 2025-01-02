@@ -86,17 +86,17 @@
                         android:layout_marginBottom="16dp"
                         app:startIconDrawable="@drawable/ic_subject"
                         app:boxStrokeColor="@color/text_primary"
-                        app:boxBackgroundColor="@color/white"
-                        app:hintTextColor="@color/text_primary"
-                        app:startIconTint="@color/text_primary">
+                        app:boxBackgroundColor="@color/slate"
+                        app:hintTextColor="@color/white"
+                        app:startIconTint="@color/white">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/subjectInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Subject"
-                            android:textColor="@color/text_primary"
-                            android:textColorHint="@color/text_secondary" />
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -106,9 +106,9 @@
                         android:layout_marginBottom="16dp"
                         app:startIconDrawable="@drawable/ic_message"
                         app:boxStrokeColor="@color/text_primary"
-                        app:boxBackgroundColor="@color/white"
-                        app:hintTextColor="@color/text_primary"
-                        app:startIconTint="@color/text_primary">
+                        app:boxBackgroundColor="@color/slate"
+                        app:hintTextColor="@color/white"
+                        app:startIconTint="@color/white">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/messageInput"
@@ -118,8 +118,8 @@
                             android:inputType="textMultiLine"
                             android:minLines="3"
                             android:gravity="top"
-                            android:textColor="@color/text_primary"
-                            android:textColorHint="@color/text_secondary" />
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.button.MaterialButton
