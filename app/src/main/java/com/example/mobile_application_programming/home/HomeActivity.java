@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile_application_programming.R;
+import com.example.mobile_application_programming.account.AccountActivity;
 import com.example.mobile_application_programming.auth.ContactActivity;
 import com.example.mobile_application_programming.navigation.BottomNavigationBar;
 import android.content.Intent;
@@ -130,7 +131,9 @@ public void onTabSelected(int position) {
             startActivity(contactIntent);
             break;
         case 4:
-            Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
+            // navigate to account
+            Intent accountIntent = new Intent (this , AccountActivity.class);
+            startActivity(accountIntent);
             break;
     }
 }

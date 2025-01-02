@@ -13,6 +13,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mobile_application_programming.R;
+import com.example.mobile_application_programming.account.AccountActivity;
+import com.example.mobile_application_programming.auth.ContactActivity;
 import com.example.mobile_application_programming.home.Product;
 import com.example.mobile_application_programming.navigation.BottomNavigationBar;
 import com.google.android.material.navigation.NavigationView;
@@ -231,9 +233,14 @@ public class CategoryActivity extends AppCompatActivity implements NavigationVie
             startActivity(cartIntent);
             break;
             case 3:
+                // Navigate to contact
+                Intent contactIntent = new Intent(this, ContactActivity.class);
+                startActivity(contactIntent);
+                break;
             case 4:
-                Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
-                navigationBar.setSelectedTab(1);
+                // navigate to account
+                Intent accountIntent = new Intent (this , AccountActivity.class);
+                startActivity(accountIntent);
                 break;
         }
     }

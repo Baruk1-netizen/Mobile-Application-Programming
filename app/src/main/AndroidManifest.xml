@@ -60,6 +60,11 @@
         <activity
             android:name=".auth.ContactActivity"
             android:exported="false" />
+        
+        <activity
+            android:name=".account.AccountActivity"
+            android:exported="false"
+        />
 
     </application>
 </manifest>
