@@ -23,9 +23,19 @@
         </activity>
 
         <activity
+            android:name=".auth.LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+            
+        <activity
+            android:name=".auth.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+            
+        <activity
             android:name=".home.HomeActivity"
             android:exported="false" />
-
+            
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -33,26 +43,11 @@
         <activity
             android:name=".categories.CategoryActivity"
             android:exported="false" />
-
+            
         <activity
             android:name=".cart.CartActivity"
             android:exported="false" />
-
-        <activity
-            android:name=".auth.LoginActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".auth.RegisterActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
+            
         <activity
             android:name=".cart.CheckoutActivity"
             android:exported="false" /> 
@@ -60,11 +55,10 @@
         <activity
             android:name=".auth.ContactActivity"
             android:exported="false" />
-        
+            
         <activity
             android:name=".account.AccountActivity"
-            android:exported="false"
-        />
+            android:exported="false" />
 
     </application>
 </manifest>
