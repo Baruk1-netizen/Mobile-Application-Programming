@@ -57,5 +57,9 @@
             android:name=".cart.CheckoutActivity"
             android:exported="false" /> 
 
+        <activity
+            android:name=".auth.ContactActivity"
+            android:exported="false" />
+
     </application>
 </manifest>

@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/cool_mint"
+                app:cardBackgroundColor="@color/slate"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp">
 
@@ -166,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="@color/cool_mint"
+                app:cardBackgroundColor="@color/slate"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp">
 
@@ -338,7 +338,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="80dp"
-                app:cardBackgroundColor="@color/cool_mint"
+                app:cardBackgroundColor="@color/slate"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp">
 
@@ -491,6 +491,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/white"
+        app:cardBackgroundColor="@color/slate"
         app:cardElevation="8dp">
 
         <LinearLayout
@@ -514,7 +515,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FF6F6F"
                 android:padding="16dp"
-                android:text="Place Order • $229.97"
+                android:text="Place Order"
                 android:textSize="16sp"
                 app:cornerRadius="12dp"
                 app:elevation="0dp" />

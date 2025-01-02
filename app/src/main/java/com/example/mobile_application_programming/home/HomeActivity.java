@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobile_application_programming.R;
+import com.example.mobile_application_programming.auth.ContactActivity;
 import com.example.mobile_application_programming.navigation.BottomNavigationBar;
 import android.content.Intent;
 import com.example.mobile_application_programming.categories.CategoryActivity;
@@ -124,6 +125,10 @@ public void onTabSelected(int position) {
             break;
         default:
         case 3:
+            //navigate contact activity
+            Intent contactIntent = new Intent(this, ContactActivity.class);
+            startActivity(contactIntent);
+            break;
         case 4:
             Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show();
             break;
