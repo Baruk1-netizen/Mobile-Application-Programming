@@ -14,11 +14,11 @@ EcommerceApp/
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/com/example/mobile_application_programming/
-│   │   │   │   ├── auth/                  # Baruk's work on Auth screens
+│   │   │   │   ├── auth/                  # Mbaruk's work on Auth screens
 │   │   │   │   │   ├── LoginActivity.java
 │   │   │   │   │   ├── RegisterActivity.java
 │   │   │   │   │   ├── AuthUtils.java
-│   │   │   │   │   └── ContactActivity.java  # Baruk's task: New Contact screen
+│   │   │   │   │   └── ContactActivity.java  # Mbaruk's task: New Contact screen
 │   │   │   │   ├── cart/                  # Muthoni's work on Cart and Checkout
 │   │   │   │   │   ├── CartActivity.java
 │   │   │   │   │   ├── CartAdapter.java
@@ -62,7 +62,7 @@ EcommerceApp/
 
 ## Responsibilities and File Details
 
-### **Baruk** - Authentication and Contact  
+### **Mbaruk** - Authentication and Contact  
 - **Auth Module**:  
   - `LoginActivity.java`: Handles user login functionality.  
   - `RegisterActivity.java`: Handles user registration functionality.  
